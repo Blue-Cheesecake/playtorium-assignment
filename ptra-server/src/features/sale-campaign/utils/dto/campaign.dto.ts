@@ -1,4 +1,11 @@
-import { IsInt, IsNotEmpty, IsNumber } from 'class-validator';
+import {
+  IsEnum,
+  IsInt,
+  IsNotEmpty,
+  IsNumber,
+  IsOptional,
+} from 'class-validator';
+import { ProductCategory } from '../../../..//utils/enum/product-category.enum';
 
 export default class CampaignDto {
   @IsInt()
@@ -7,8 +14,13 @@ export default class CampaignDto {
 
   @IsNumber()
   @IsNotEmpty()
-  discount: number; //NOTE: allow percentage only percentage discount
+  discount: number; //allow percentage only percentage discount
 
   @IsNumber()
-  every?: number; // NOTE: available only Special Campaigns
+  @IsOptional()
+  everyXPrice?: number; // available only SpecialCampaigns
+
+  @IsEnum(ProductCategory, { each: true })
+  @IsOptional()
+  productCategory?: ProductCategory; // available only PercentageDiscountByItemCategory
 }
