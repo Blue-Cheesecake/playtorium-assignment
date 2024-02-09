@@ -9,15 +9,18 @@ export abstract class IDatabaseService {
 
 @Injectable()
 export class MockDatabaseService implements IDatabaseService {
+  /**
+   * ProductCategory Table
+   */
   getProductCategoryFromId(id: number): ProductCategory | null | undefined {
     if (id === 1) {
       return ProductCategory.clothing;
     }
     if (id === 2) {
-      return ProductCategory.laptop;
+      return ProductCategory.accessories;
     }
     if (id === 3) {
-      return ProductCategory.monitor;
+      return ProductCategory.electronics;
     }
     return null;
   }
