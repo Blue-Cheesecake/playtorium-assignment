@@ -5,7 +5,7 @@ import {
   IsNumber,
   IsOptional,
 } from 'class-validator';
-import { ProductCategory } from 'src/utils/enum/product-category.enum';
+import { ProductCategory } from '../../../..//utils/enum/product-category.enum';
 
 export default class CampaignDto {
   @IsInt()

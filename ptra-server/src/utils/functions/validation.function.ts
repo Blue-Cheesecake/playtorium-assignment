@@ -1,9 +1,8 @@
-import CampaignDto from 'src/features/sale-campaign/utils/dto/campaign.dto';
-import CommonConstantValues from '../constants/common-constant-values';
 import { IDatabaseService } from '../database/database.service';
 import { DiscountType } from '../enum/discount-type.enum';
 import { CampaignType } from '../enum/campaign-type.enum';
 import CampaignModel from '../models/campaign.model';
+import CampaignDto from '../../features/sale-campaign/utils/dto/campaign.dto';
 
 export default class ValidationFunction {
   static isCampaignDtoListValid(
@@ -26,7 +25,7 @@ export default class ValidationFunction {
       return false;
     }
 
-    if (this._isCampaignCategoryValidDuplicated(campaignModels)) {
+    if (!this._isCampaignCategoryValidDuplicated(campaignModels)) {
       return false;
     }
 
@@ -40,6 +39,8 @@ export default class ValidationFunction {
 
   /**
    * Category should not be duplicated with different Campaign
+   *
+   * Return `true` for valid Dto, `false` otherwise
    *
    * For example, Category Coupon, there should be either `Fixed Amount` or `Percentage Discount`
    */
@@ -68,6 +69,7 @@ export default class ValidationFunction {
     dto: CampaignDto,
     campaign: CampaignModel,
   ): boolean {
+    // value checking
     switch (campaign.discountType) {
       case DiscountType.percentage:
         if (dto.discount < 0 || dto.discount > 100) {
@@ -82,12 +84,19 @@ export default class ValidationFunction {
         }
         break;
     }
-
-    // everyXPrice exist only SpecialCampaign Type
-    if (campaign.type !== CampaignType.specialCampaign && dto.everyXPrice) {
+    if (
+      campaign.type === CampaignType.specialCampaign &&
+      dto.everyXPrice &&
+      dto.everyXPrice < 0
+    ) {
       return false;
     }
-    if (campaign.type === CampaignType.specialCampaign && !dto.everyXPrice) {
+
+    // everyXPrice exist only SpecialCampaign Type
+    if (
+      (campaign.type !== CampaignType.specialCampaign && dto.everyXPrice) ||
+      (campaign.type === CampaignType.specialCampaign && !dto.everyXPrice)
+    ) {
       return false;
     }
 

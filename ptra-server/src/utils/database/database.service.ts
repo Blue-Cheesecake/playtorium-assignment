@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { ProductCategory } from '../enum/product-category.enum';
-import ProductModel from 'src/utils/models/product.model';
 import CampaignModel from '../models/campaign.model';
 import { CampaignType } from '../enum/campaign-type.enum';
 import { DiscountType } from '../enum/discount-type.enum';
+import ProductModel from '../models/product.model';
 
 export abstract class IDatabaseService {
   abstract getCampaignById(id: number): CampaignModel | null | undefined;
