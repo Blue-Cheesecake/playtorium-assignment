@@ -1,5 +1,5 @@
 export enum ProductCategory {
   clothing,
-  laptop,
-  monitor,
+  accessories,
+  electronics,
 }
