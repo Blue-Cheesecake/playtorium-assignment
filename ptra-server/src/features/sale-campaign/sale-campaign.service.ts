@@ -11,7 +11,7 @@ export class SaleCampaignService {
 
   getFinalPriceTotalPrice(dto: SaleCampaignDto): TotalResultEntity {
     // Case null or empty campaigns
-    if (dto.campaigns) {
+    if (!dto.campaigns) {
       return {
         totalPrice: this._calculatePriceWithoutCampaign(dto.products),
       };
@@ -27,7 +27,7 @@ export class SaleCampaignService {
 
     products.forEach((e) => {
       const product = this.databaseService.getProductById(e.id);
-      if (!product) {
+      if (product) {
         result += product.price * e.quantity;
         return;
       }
