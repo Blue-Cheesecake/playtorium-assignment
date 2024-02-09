@@ -1,7 +1,7 @@
 import { Body, Controller, Post } from '@nestjs/common';
 import TotalResultEntity from './utils/entities/total-price-result.entity';
 import { SaleCampaignService } from './sale-campaign.service';
-import { SaleCampaignDto } from './utils/dto/sale-campaign.dto';
+import SaleCampaignDto from './utils/dto/sale-campaign.dto';
 
 @Controller('api/v1/sale-campaign')
 export class SaleCampaignController {

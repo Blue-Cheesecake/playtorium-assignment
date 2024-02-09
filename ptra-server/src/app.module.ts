@@ -1,8 +1,9 @@
 import { Module } from '@nestjs/common';
-import { SaleCampaignModule } from './sale-campaign/sale-campaign.module';
+import { SaleCampaignModule } from './features/sale-campaign/sale-campaign.module';
+import { DatabaseModule } from './utils/database/database.module';
 
 @Module({
-  imports: [SaleCampaignModule],
+  imports: [SaleCampaignModule, DatabaseModule],
   controllers: [],
   providers: [],
 })
