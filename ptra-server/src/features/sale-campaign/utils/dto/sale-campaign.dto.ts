@@ -4,6 +4,6 @@ import CampaignDto from './campaign.dto';
 
 export default class SaleCampaignDto {
   @IsNotEmpty()
-  products: [ProductDto];
-  campaigns?: [CampaignDto];
+  products: ProductDto[];
+  campaigns?: CampaignDto[];
 }

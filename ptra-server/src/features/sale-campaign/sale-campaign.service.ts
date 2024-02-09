@@ -21,7 +21,7 @@ export class SaleCampaignService {
     };
   }
 
-  _getTotalPriceWithoutCampaign(products: [ProductDto]) {
+  _getTotalPriceWithoutCampaign(products: ProductDto[]) {
     let result = 0;
 
     products.forEach((e) => {
