@@ -13,6 +13,7 @@ export abstract class IDatabaseService {
     id: number,
   ): ProductCategory | null | undefined;
   abstract getUserFromId(id: number): UserModel | null | undefined;
+  abstract getAllProducts(): ProductModel[];
 }
 
 @Injectable()
@@ -91,6 +92,20 @@ export class MockDatabaseService implements IDatabaseService {
       return new ProductModel(6, 'Belt', 2, 230.0);
     }
     return null;
+  }
+
+  /**
+   * Products Table
+   */
+  getAllProducts(): ProductModel[] {
+    return [
+      new ProductModel(1, 'T Shirt', 1, 350.0),
+      new ProductModel(2, 'Hat', 2, 250.0),
+      new ProductModel(3, 'Hoodie', 1, 700.0),
+      new ProductModel(4, 'Watch', 2, 850.0),
+      new ProductModel(5, 'Bag', 2, 640.0),
+      new ProductModel(6, 'Belt', 2, 230.0),
+    ];
   }
 
   /**
