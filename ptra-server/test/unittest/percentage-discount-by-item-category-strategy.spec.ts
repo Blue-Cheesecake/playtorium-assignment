@@ -13,22 +13,22 @@ describe('PercentageDiscountStrategy', () => {
         productsInfo: [
           {
             productCategory: ProductCategory.clothing,
-            productModel: new ProductModel(1, 'clothe1', 1, 350),
+            productModel: new ProductModel(1, 'clothe1', 1, 350, ''),
             quantity: 1,
           },
           {
             productCategory: ProductCategory.clothing,
-            productModel: new ProductModel(1, 'clothe2', 1, 700),
+            productModel: new ProductModel(1, 'clothe2', 1, 700, ''),
             quantity: 1,
           },
           {
             productCategory: ProductCategory.accessories,
-            productModel: new ProductModel(1, 'acc1', 1, 850),
+            productModel: new ProductModel(1, 'acc1', 1, 850, ''),
             quantity: 1,
           },
           {
             productCategory: ProductCategory.accessories,
-            productModel: new ProductModel(1, 'acc2', 1, 640),
+            productModel: new ProductModel(1, 'acc2', 1, 640, ''),
             quantity: 1,
           },
         ],
@@ -45,22 +45,22 @@ describe('PercentageDiscountStrategy', () => {
         productsInfo: [
           {
             productCategory: ProductCategory.clothing,
-            productModel: new ProductModel(1, 'clothe1', 1, 350),
+            productModel: new ProductModel(1, 'clothe1', 1, 350, ''),
             quantity: 1,
           },
           {
             productCategory: ProductCategory.clothing,
-            productModel: new ProductModel(1, 'clothe2', 1, 700),
+            productModel: new ProductModel(1, 'clothe2', 1, 700, ''),
             quantity: 1,
           },
           {
             productCategory: ProductCategory.accessories,
-            productModel: new ProductModel(1, 'acc1', 1, 850),
+            productModel: new ProductModel(1, 'acc1', 1, 850, ''),
             quantity: 1,
           },
           {
             productCategory: ProductCategory.accessories,
-            productModel: new ProductModel(1, 'acc2', 1, 640),
+            productModel: new ProductModel(1, 'acc2', 1, 640, ''),
             quantity: 1,
           },
         ],
