@@ -36,8 +36,6 @@ export class PercentageDiscountByItemCategoryStrategy
     let result = currentTotalPrice;
 
     params.productsInfo.forEach((e) => {
-      console.log(e.productCategory, params.category);
-
       // NOTE: if productCategory from dto is invalid, it still does not satisfy this condition
       if (e.productCategory === params.category) {
         const originalPrice = e.quantity * e.productModel.price;
