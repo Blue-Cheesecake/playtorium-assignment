@@ -137,6 +137,47 @@ describe('AppController (e2e)', () => {
         });
     });
 
+    it('/api/v1/sale-campaign (FixedAmount + SpecialCampaign) (Normal Order Campaigns)', () => {
+      // All = 350+500+850+640 = 2340
+      return request(app.getHttpServer())
+        .post('/api/v1/sale-campaign')
+        .send({
+          products: [
+            {
+              id: 1,
+              quantity: 1,
+            },
+            {
+              id: 2,
+              quantity: 2,
+            },
+            {
+              id: 4,
+              quantity: 1,
+            },
+            {
+              id: 5,
+              quantity: 1,
+            },
+          ],
+          campaigns: [
+            {
+              id: 1,
+              discount: 565,
+            },
+            {
+              id: 5,
+              discount: 50,
+              everyXPrice: 100,
+            },
+          ],
+        })
+        .expect(200)
+        .expect({
+          totalPrice: 925,
+        });
+    });
+
     it('/api/v1/sale-campaign (FixedAmount + DiscountByPoints) (Normal Order Campaigns)', () => {
       // All = 350+500+2100+850+640 = 4440
       return request(app.getHttpServer())
