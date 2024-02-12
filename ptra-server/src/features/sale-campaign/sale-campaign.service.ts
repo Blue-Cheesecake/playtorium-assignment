@@ -14,10 +14,16 @@ import {
 } from './utils/strategies/campaign-discount.strategy';
 import { IterateProductDtoResult } from './utils/entities/result.entity';
 import { RequestInfoEntity } from './utils/entities/request-info.entitiy';
+import CampaignModel from '../..//utils/models/campaign.model';
 
 @Injectable()
 export class SaleCampaignService {
   constructor(private readonly databaseService: IDatabaseService) {}
+
+  getAllCampaigns(): CampaignModel[] {
+    const response = this.databaseService.getAllCampaigns();
+    return response;
+  }
 
   getFinalPriceTotalPrice(dto: SaleCampaignDto): TotalResultEntity {
     const result = this._getTotalPriceWithoutCampaign(dto.products);
