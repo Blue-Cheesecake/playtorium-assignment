@@ -4,6 +4,8 @@ import TotalResultEntity from './utils/entities/total-price-result.entity';
 import { IDatabaseService } from 'src/utils/database/database.service';
 import ProductDto from './utils/dto/product.dto';
 import SaleCampaignMessageConstant from './utils/constants/sale-campaign-message.constant';
+import { CampaignType } from '../../utils/enum/campaign-type.enum';
+import { FixedAmountDiscountStrategy } from './utils/strategies/campaign-discount.strategy';
 
 @Injectable()
 export class SaleCampaignService {
@@ -12,13 +14,27 @@ export class SaleCampaignService {
   getFinalPriceTotalPrice(dto: SaleCampaignDto): TotalResultEntity {
     let result = this._getTotalPriceWithoutCampaign(dto.products);
 
-    if (!dto.campaigns) {
-      return { totalPrice: result };
+    if (dto.campaigns) {
+      for (const campaignDto of dto.campaigns) {
+        const campaign = this.databaseService.getCampaignById(campaignDto.id);
+
+        switch (campaign.type) {
+          case CampaignType.fixedAmount:
+            const strategy = new FixedAmountDiscountStrategy();
+            result = strategy.getDiscount(result, campaignDto.discount);
+            break;
+          case CampaignType.percentageDiscount:
+            break;
+          case CampaignType.percentageDiscountByItemCategory:
+            break;
+          case CampaignType.discountByPoint:
+            break;
+          case CampaignType.specialCampaign:
+        }
+      }
     }
 
-    return {
-      totalPrice: 0,
-    };
+    return { totalPrice: result };
   }
 
   _getTotalPriceWithoutCampaign(products: ProductDto[]) {
