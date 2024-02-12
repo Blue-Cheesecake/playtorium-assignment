@@ -1,6 +1,6 @@
 import 'package:go_router/go_router.dart';
 
-import '../../../../../features/cart/cart_page.dart';
+import '../../../../../features/home/pages/cart/cart_page.dart';
 import '../../../../../features/home/homepage.dart';
 import '../utils.dart';
 
