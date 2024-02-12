@@ -6,6 +6,7 @@ import ProductDto from './utils/dto/product.dto';
 import SaleCampaignMessageConstant from './utils/constants/sale-campaign-message.constant';
 import { CampaignType } from '../../utils/enum/campaign-type.enum';
 import {
+  DiscountByPoints,
   FixedAmountDiscountStrategy,
   PercentageDiscountByItemCategoryStrategy,
   PercentageDiscountStrategy,
@@ -55,6 +56,18 @@ export class SaleCampaignService {
               );
             break;
           case CampaignType.discountByPoint:
+            // Assume the user id
+            const user = this.databaseService.getUserFromId(1);
+            if (user.points < campaignDto.discount) {
+              throw new BadRequestException({
+                message: 'User points are not enough to process',
+              });
+            }
+
+            totalPrice = new DiscountByPoints().getDiscount(
+              totalPrice,
+              campaignDto.discount,
+            );
             break;
           case CampaignType.specialCampaign:
             break;

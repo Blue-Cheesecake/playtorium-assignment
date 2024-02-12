@@ -1,3 +1,4 @@
+import SaleCampaignValuesConstant from '../constants/sale-campaign-values.constant';
 import { PercentageDiscountByItemCategoryStrategyParams } from '../entities/params.entity';
 
 export interface ICampaignDiscountStrategy<P> {
@@ -12,6 +13,9 @@ export class FixedAmountDiscountStrategy
    */
   getDiscount(currentTotalPrice: number, discountAmount: number): number {
     const discount = currentTotalPrice - discountAmount;
+    if (discount < 0) {
+      return 0;
+    }
     return Math.round((discount + Number.EPSILON) * 100) / 100;
   }
 }
@@ -48,5 +52,28 @@ export class PercentageDiscountByItemCategoryStrategy
     });
 
     return Math.round((result + Number.EPSILON) * 100) / 100;
+  }
+}
+
+export class DiscountByPoints implements ICampaignDiscountStrategy<number> {
+  /**
+   * Assume that customer points is always valid
+   *
+   * We may call database service to deduct the customer point. However, for mocking purpose, I omit that part.
+   */
+  getDiscount(currentTotalPrice: number, customerPoints: number): number {
+    const atMostDiscount =
+      currentTotalPrice *
+      (SaleCampaignValuesConstant.atMostDiscountByPointsPercentage / 100);
+    let usedPoints = customerPoints;
+    if (usedPoints > atMostDiscount) {
+      usedPoints = atMostDiscount;
+    }
+
+    const discount = currentTotalPrice - usedPoints;
+    if (discount < 0) {
+      return 0;
+    }
+    return discount;
   }
 }
