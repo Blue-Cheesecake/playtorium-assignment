@@ -136,5 +136,93 @@ describe('AppController (e2e)', () => {
           totalPrice: 3182.5,
         });
     });
+
+    it('/api/v1/sale-campaign (FixedAmount + DiscountByPoints) (Normal Order Campaigns)', () => {
+      // All = 350+500+2100+850+640 = 4440
+      return request(app.getHttpServer())
+        .post('/api/v1/sale-campaign')
+        .send({
+          products: [
+            {
+              id: 1,
+              quantity: 1,
+            },
+            {
+              id: 2,
+              quantity: 2,
+            },
+            {
+              id: 3,
+              quantity: 3,
+            },
+            {
+              id: 4,
+              quantity: 1,
+            },
+            {
+              id: 5,
+              quantity: 1,
+            },
+          ],
+          campaigns: [
+            {
+              id: 1,
+              discount: 350.5,
+            },
+            {
+              id: 4,
+              discount: 9999,
+            },
+          ],
+        })
+        .expect(200)
+        .expect({
+          totalPrice: 3271.6,
+        });
+    });
+
+    it('/api/v1/sale-campaign (PercentageDiscount + DiscountByPoints) (Random Order Campaigns)', () => {
+      // All = 350+500+2100+850+640 = 4440
+      return request(app.getHttpServer())
+        .post('/api/v1/sale-campaign')
+        .send({
+          products: [
+            {
+              id: 1,
+              quantity: 1,
+            },
+            {
+              id: 2,
+              quantity: 2,
+            },
+            {
+              id: 3,
+              quantity: 3,
+            },
+            {
+              id: 4,
+              quantity: 1,
+            },
+            {
+              id: 5,
+              quantity: 1,
+            },
+          ],
+          campaigns: [
+            {
+              id: 4,
+              discount: 50,
+            },
+            {
+              id: 2,
+              discount: 15,
+            },
+          ],
+        })
+        .expect(200)
+        .expect({
+          totalPrice: 3724,
+        });
+    });
   });
 });
