@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
-import { AppModule } from './../src/app.module';
+import { AppModule } from '../../src/app.module';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;
@@ -15,10 +15,30 @@ describe('AppController (e2e)', () => {
     await app.init();
   });
 
-  it('/ (GET)', () => {
+  it('/api/v1/sale-campaign (PercentageDiscount)', () => {
     return request(app.getHttpServer())
-      .get('/')
+      .post('/api/v1/sale-campaign')
+      .send({
+        products: [
+          {
+            id: 1,
+            quantity: 1,
+          },
+          {
+            id: 2,
+            quantity: 1,
+          },
+        ],
+        campaigns: [
+          {
+            id: 2,
+            discount: 10,
+          },
+        ],
+      })
       .expect(200)
-      .expect('Hello World!');
+      .expect({
+        totalPrice: 540,
+      });
   });
 });

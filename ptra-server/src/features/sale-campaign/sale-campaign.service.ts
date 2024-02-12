@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import SaleCampaignDto from './utils/dto/sale-campaign.dto';
 import TotalResultEntity from './utils/entities/total-price-result.entity';
-import { IDatabaseService } from 'src/utils/database/database.service';
+import { IDatabaseService } from '../..//utils/database/database.service';
 import ProductDto from './utils/dto/product.dto';
 import SaleCampaignMessageConstant from './utils/constants/sale-campaign-message.constant';
 import { CampaignType } from '../../utils/enum/campaign-type.enum';
