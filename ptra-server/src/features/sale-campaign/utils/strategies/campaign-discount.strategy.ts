@@ -1,5 +1,8 @@
 import SaleCampaignValuesConstant from '../constants/sale-campaign-values.constant';
-import { PercentageDiscountByItemCategoryStrategyParams } from '../entities/params.entity';
+import {
+  PercentageDiscountByItemCategoryStrategyParams,
+  SpecialCampaignStrategyParams,
+} from '../entities/params.entity';
 
 export interface ICampaignDiscountStrategy<P> {
   getDiscount(currentTotalPrice: number, params: P): number;
@@ -71,6 +74,24 @@ export class DiscountByPoints implements ICampaignDiscountStrategy<number> {
     }
 
     const discount = currentTotalPrice - usedPoints;
+    if (discount < 0) {
+      return 0;
+    }
+    return discount;
+  }
+}
+
+export class SpecialCampaignsStrategy
+  implements ICampaignDiscountStrategy<SpecialCampaignStrategyParams>
+{
+  getDiscount(
+    currentTotalPrice: number,
+    params: SpecialCampaignStrategyParams,
+  ): number {
+    const times = Math.floor(currentTotalPrice / params.everyXPrice);
+    const totalDiscount = params.discount * times;
+
+    const discount = currentTotalPrice - totalDiscount;
     if (discount < 0) {
       return 0;
     }

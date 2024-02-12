@@ -10,6 +10,7 @@ import {
   FixedAmountDiscountStrategy,
   PercentageDiscountByItemCategoryStrategy,
   PercentageDiscountStrategy,
+  SpecialCampaignsStrategy,
 } from './utils/strategies/campaign-discount.strategy';
 import { IterateProductDtoResult } from './utils/entities/result.entity';
 import { RequestInfoEntity } from './utils/entities/request-info.entitiy';
@@ -70,6 +71,13 @@ export class SaleCampaignService {
             );
             break;
           case CampaignType.specialCampaign:
+            totalPrice = new SpecialCampaignsStrategy().getDiscount(
+              totalPrice,
+              {
+                discount: campaignDto.discount,
+                everyXPrice: campaignDto.everyXPrice,
+              },
+            );
             break;
         }
       }
