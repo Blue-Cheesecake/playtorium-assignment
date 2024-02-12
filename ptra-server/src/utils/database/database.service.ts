@@ -114,7 +114,7 @@ export class MockDatabaseService implements IDatabaseService {
    */
   getUserFromId(id: number): UserModel | null | undefined {
     if (id === 1) {
-      return new UserModel(1, 999);
+      return new UserModel(1, 100000);
     }
     return null;
   }
