@@ -12,15 +12,26 @@ export default class CampaignDto {
   @IsNotEmpty()
   id: number;
 
+  /**
+   * The discount value, percentage, or custmer points
+   *
+   * Allow percentage only percentage discount
+   */
   @IsNumber()
   @IsNotEmpty()
-  discount: number; //allow percentage only percentage discount
+  discount: number;
 
+  /**
+   * Available only SpecialCampaigns
+   */
   @IsNumber()
   @IsOptional()
-  everyXPrice?: number; // available only SpecialCampaigns
+  everyXPrice?: number;
 
+  /**
+   * Available only PercentageDiscountByItemCategory
+   */
   @IsEnum(ProductCategory, { each: true })
   @IsOptional()
-  productCategory?: ProductCategory; // available only PercentageDiscountByItemCategory
+  productCategory?: ProductCategory;
 }

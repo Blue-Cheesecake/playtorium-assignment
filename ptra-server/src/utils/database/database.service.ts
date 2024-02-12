@@ -4,6 +4,7 @@ import CampaignModel from '../models/campaign.model';
 import { CampaignType } from '../enum/campaign-type.enum';
 import { DiscountType } from '../enum/discount-type.enum';
 import ProductModel from '../models/product.model';
+import UserModel from '../models/user.model';
 
 export abstract class IDatabaseService {
   abstract getCampaignById(id: number): CampaignModel | null | undefined;
@@ -11,6 +12,7 @@ export abstract class IDatabaseService {
   abstract getProductCategoryFromId(
     id: number,
   ): ProductCategory | null | undefined;
+  abstract getUserFromId(id: number): UserModel | null | undefined;
 }
 
 @Injectable()
@@ -103,6 +105,16 @@ export class MockDatabaseService implements IDatabaseService {
     }
     if (id === 3) {
       return ProductCategory.electronics;
+    }
+    return null;
+  }
+
+  /**
+   * Users Table
+   */
+  getUserFromId(id: number): UserModel | null | undefined {
+    if (id === 1) {
+      return new UserModel(1, 100000);
     }
     return null;
   }
