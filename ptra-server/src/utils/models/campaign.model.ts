@@ -3,6 +3,7 @@ import { DiscountType } from '../enum/discount-type.enum';
 
 export default class CampaignModel {
   id: number;
+  title: string;
   type: CampaignType;
   description: string;
   discountType: DiscountType;
@@ -10,12 +11,14 @@ export default class CampaignModel {
 
   constructor(
     id: number,
+    title: string,
     type: CampaignType,
     description: string,
     categoryId: number,
     discountType: DiscountType,
   ) {
     this.id = id;
+    this.title = title;
     this.description = description;
     this.type = type;
     this.categoryId = categoryId;

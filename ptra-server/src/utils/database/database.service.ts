@@ -26,6 +26,7 @@ export class MockDatabaseService implements IDatabaseService {
     if (id === 1) {
       return new CampaignModel(
         1,
+        'Fixed Amount',
         CampaignType.fixedAmount,
         'Discounts the entire cart by subtracting an amount from the total price',
         1,
@@ -35,6 +36,7 @@ export class MockDatabaseService implements IDatabaseService {
     if (id === 2) {
       return new CampaignModel(
         2,
+        'Percentage Discount',
         CampaignType.percentageDiscount,
         'Discounts the entire cart by subtracting a percentage from the total price',
         1,
@@ -44,6 +46,7 @@ export class MockDatabaseService implements IDatabaseService {
     if (id === 3) {
       return new CampaignModel(
         3,
+        'Percentage Discount by Item Category',
         CampaignType.percentageDiscountByItemCategory,
         'Discount the entire amount of a specific category of items in cart',
         2,
@@ -53,6 +56,7 @@ export class MockDatabaseService implements IDatabaseService {
     if (id === 4) {
       return new CampaignModel(
         4,
+        'Discount by Points',
         CampaignType.discountByPoint,
         'Users spent points for a fixed amount of discount (1 point = 1 THB). The amount will be capped at 20% of total price. Noted that "20%" is fixed rule',
         2,
@@ -62,6 +66,7 @@ export class MockDatabaseService implements IDatabaseService {
     if (id === 5) {
       return new CampaignModel(
         5,
+        'Special Campaign',
         CampaignType.specialCampaign,
         '',
         3,
@@ -78,6 +83,7 @@ export class MockDatabaseService implements IDatabaseService {
     return [
       new CampaignModel(
         1,
+        'Fixed Amount',
         CampaignType.fixedAmount,
         'Discounts the entire cart by subtracting an amount from the total price',
         1,
@@ -85,6 +91,7 @@ export class MockDatabaseService implements IDatabaseService {
       ),
       new CampaignModel(
         2,
+        'Percentage Discount',
         CampaignType.percentageDiscount,
         'Discounts the entire cart by subtracting a percentage from the total price',
         1,
@@ -92,6 +99,7 @@ export class MockDatabaseService implements IDatabaseService {
       ),
       new CampaignModel(
         3,
+        'Percentage Discount by Item Category',
         CampaignType.percentageDiscountByItemCategory,
         'Discount the entire amount of a specific category of items in cart',
         2,
@@ -99,6 +107,7 @@ export class MockDatabaseService implements IDatabaseService {
       ),
       new CampaignModel(
         4,
+        'Discount by Points',
         CampaignType.discountByPoint,
         'Users spent points for a fixed amount of discount (1 point = 1 THB). The amount will be capped at 20% of total price. Noted that "20%" is fixed rule',
         2,
@@ -106,6 +115,7 @@ export class MockDatabaseService implements IDatabaseService {
       ),
       new CampaignModel(
         5,
+        'Special Campaign',
         CampaignType.specialCampaign,
         '',
         3,
