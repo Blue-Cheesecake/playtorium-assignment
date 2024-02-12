@@ -6,3 +6,8 @@ export interface PercentageDiscountByItemCategoryStrategyParams {
   category: ProductCategory;
   discountPercentage: number;
 }
+
+export interface SpecialCampaignStrategyParams {
+  everyXPrice: number;
+  discount: number;
+}
