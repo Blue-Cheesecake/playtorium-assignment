@@ -74,22 +74,58 @@ export class MockDatabaseService implements IDatabaseService {
    */
   getProductById(id: number): ProductModel | null | undefined {
     if (id === 1) {
-      return new ProductModel(1, 'T Shirt', 1, 350.0);
+      return new ProductModel(
+        1,
+        'T Shirt',
+        1,
+        350.0,
+        'https://mockups-design.com/wp-content/uploads/2021/08/Hanging_T-Shirt_Mockup_2.jpg',
+      );
     }
     if (id === 2) {
-      return new ProductModel(2, 'Hat', 2, 250.0);
+      return new ProductModel(
+        2,
+        'Hat',
+        2,
+        250.0,
+        'https://static3.depositphotos.com/1001449/153/i/450/depositphotos_1531740-stock-photo-hat.jpg',
+      );
     }
     if (id === 3) {
-      return new ProductModel(3, 'Hoodie', 1, 700.0);
+      return new ProductModel(
+        3,
+        'Hoodie',
+        1,
+        700.0,
+        'https://unblast.com/wp-content/uploads/2021/10/Simple-Hoodie-Mockup.jpg',
+      );
     }
     if (id === 4) {
-      return new ProductModel(4, 'Watch', 2, 850.0);
+      return new ProductModel(
+        4,
+        'Watch',
+        2,
+        850.0,
+        'https://images.pexels.com/photos/277390/pexels-photo-277390.jpeg?cs=srgb&dl=pexels-pixabay-277390.jpg&fm=jpg',
+      );
     }
     if (id === 5) {
-      return new ProductModel(5, 'Bag', 2, 640.0);
+      return new ProductModel(
+        5,
+        'Bag',
+        2,
+        640.0,
+        'https://images.pexels.com/photos/1152077/pexels-photo-1152077.jpeg',
+      );
     }
     if (id === 6) {
-      return new ProductModel(6, 'Belt', 2, 230.0);
+      return new ProductModel(
+        6,
+        'Belt',
+        2,
+        230.0,
+        'https://img.freepik.com/free-photo/leather-belt_74190-2615.jpg',
+      );
     }
     return null;
   }
@@ -99,12 +135,48 @@ export class MockDatabaseService implements IDatabaseService {
    */
   getAllProducts(): ProductModel[] {
     return [
-      new ProductModel(1, 'T Shirt', 1, 350.0),
-      new ProductModel(2, 'Hat', 2, 250.0),
-      new ProductModel(3, 'Hoodie', 1, 700.0),
-      new ProductModel(4, 'Watch', 2, 850.0),
-      new ProductModel(5, 'Bag', 2, 640.0),
-      new ProductModel(6, 'Belt', 2, 230.0),
+      new ProductModel(
+        1,
+        'T Shirt',
+        1,
+        350.0,
+        'https://mockups-design.com/wp-content/uploads/2021/08/Hanging_T-Shirt_Mockup_2.jpg',
+      ),
+      new ProductModel(
+        2,
+        'Hat',
+        2,
+        250.0,
+        'https://static3.depositphotos.com/1001449/153/i/450/depositphotos_1531740-stock-photo-hat.jpg',
+      ),
+      new ProductModel(
+        3,
+        'Hoodie',
+        1,
+        700.0,
+        'https://unblast.com/wp-content/uploads/2021/10/Simple-Hoodie-Mockup.jpg',
+      ),
+      new ProductModel(
+        4,
+        'Watch',
+        2,
+        850.0,
+        'https://images.pexels.com/photos/277390/pexels-photo-277390.jpeg?cs=srgb&dl=pexels-pixabay-277390.jpg&fm=jpg',
+      ),
+      new ProductModel(
+        5,
+        'Bag',
+        2,
+        640.0,
+        'https://images.pexels.com/photos/1152077/pexels-photo-1152077.jpeg',
+      ),
+      new ProductModel(
+        6,
+        'Belt',
+        2,
+        230.0,
+        'https://img.freepik.com/free-photo/leather-belt_74190-2615.jpg',
+      ),
     ];
   }
 
