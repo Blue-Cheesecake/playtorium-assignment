@@ -22,7 +22,13 @@ export class SaleCampaignService {
     let totalPrice = result.totalPrice;
 
     if (dto.campaigns) {
-      for (const campaignDto of dto.campaigns) {
+      // The order of applying campaigns is Coupon > On Top > Seasonal.
+      // To satisfy this condition, the id in database should be organized in ascending order
+      const sortedCampaignTypes = [...dto.campaigns].sort(
+        (a, b) => a.id - b.id,
+      );
+
+      for (const campaignDto of sortedCampaignTypes) {
         const campaign = this.databaseService.getCampaignById(campaignDto.id);
         switch (campaign.type) {
           case CampaignType.fixedAmount:
