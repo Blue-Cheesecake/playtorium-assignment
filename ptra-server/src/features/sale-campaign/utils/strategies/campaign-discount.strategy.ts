@@ -9,3 +9,11 @@ export class FixedAmountDiscountStrategy
     return currentTotalPrice - discountAmount;
   }
 }
+
+export class PercentageDiscountStrategy
+  implements ICampaignDiscountStrategy<number>
+{
+  getDiscount(currentTotalPrice: number, percentage: number): number {
+    return currentTotalPrice - currentTotalPrice * (percentage / 100);
+  }
+}
