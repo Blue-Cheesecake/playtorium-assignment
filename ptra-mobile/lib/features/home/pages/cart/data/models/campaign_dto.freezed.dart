@@ -24,6 +24,8 @@ mixin _$CampaignDto {
   double get discount => throw _privateConstructorUsedError;
   String get title =>
       throw _privateConstructorUsedError; // NOTE: it will not be used in Server.
+  bool get isPercentageType =>
+      throw _privateConstructorUsedError; // NOTE: it will not be used in Server.
   double? get everyXPrice => throw _privateConstructorUsedError;
   String? get productCategory => throw _privateConstructorUsedError;
 
@@ -43,6 +45,7 @@ abstract class $CampaignDtoCopyWith<$Res> {
       {int id,
       double discount,
       String title,
+      bool isPercentageType,
       double? everyXPrice,
       String? productCategory});
 }
@@ -63,6 +66,7 @@ class _$CampaignDtoCopyWithImpl<$Res, $Val extends CampaignDto>
     Object? id = null,
     Object? discount = null,
     Object? title = null,
+    Object? isPercentageType = null,
     Object? everyXPrice = freezed,
     Object? productCategory = freezed,
   }) {
@@ -79,6 +83,10 @@ class _$CampaignDtoCopyWithImpl<$Res, $Val extends CampaignDto>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
+      isPercentageType: null == isPercentageType
+          ? _value.isPercentageType
+          : isPercentageType // ignore: cast_nullable_to_non_nullable
+              as bool,
       everyXPrice: freezed == everyXPrice
           ? _value.everyXPrice
           : everyXPrice // ignore: cast_nullable_to_non_nullable
@@ -103,6 +111,7 @@ abstract class _$$CampaignDtoImplCopyWith<$Res>
       {int id,
       double discount,
       String title,
+      bool isPercentageType,
       double? everyXPrice,
       String? productCategory});
 }
@@ -121,6 +130,7 @@ class __$$CampaignDtoImplCopyWithImpl<$Res>
     Object? id = null,
     Object? discount = null,
     Object? title = null,
+    Object? isPercentageType = null,
     Object? everyXPrice = freezed,
     Object? productCategory = freezed,
   }) {
@@ -137,6 +147,10 @@ class __$$CampaignDtoImplCopyWithImpl<$Res>
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
               as String,
+      isPercentageType: null == isPercentageType
+          ? _value.isPercentageType
+          : isPercentageType // ignore: cast_nullable_to_non_nullable
+              as bool,
       everyXPrice: freezed == everyXPrice
           ? _value.everyXPrice
           : everyXPrice // ignore: cast_nullable_to_non_nullable
@@ -156,6 +170,7 @@ class _$CampaignDtoImpl implements _CampaignDto {
       {required this.id,
       required this.discount,
       required this.title,
+      this.isPercentageType = false,
       this.everyXPrice,
       this.productCategory});
 
@@ -170,13 +185,17 @@ class _$CampaignDtoImpl implements _CampaignDto {
   final String title;
 // NOTE: it will not be used in Server.
   @override
+  @JsonKey()
+  final bool isPercentageType;
+// NOTE: it will not be used in Server.
+  @override
   final double? everyXPrice;
   @override
   final String? productCategory;
 
   @override
   String toString() {
-    return 'CampaignDto(id: $id, discount: $discount, title: $title, everyXPrice: $everyXPrice, productCategory: $productCategory)';
+    return 'CampaignDto(id: $id, discount: $discount, title: $title, isPercentageType: $isPercentageType, everyXPrice: $everyXPrice, productCategory: $productCategory)';
   }
 
   @override
@@ -188,6 +207,8 @@ class _$CampaignDtoImpl implements _CampaignDto {
             (identical(other.discount, discount) ||
                 other.discount == discount) &&
             (identical(other.title, title) || other.title == title) &&
+            (identical(other.isPercentageType, isPercentageType) ||
+                other.isPercentageType == isPercentageType) &&
             (identical(other.everyXPrice, everyXPrice) ||
                 other.everyXPrice == everyXPrice) &&
             (identical(other.productCategory, productCategory) ||
@@ -196,8 +217,8 @@ class _$CampaignDtoImpl implements _CampaignDto {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, discount, title, everyXPrice, productCategory);
+  int get hashCode => Object.hash(runtimeType, id, discount, title,
+      isPercentageType, everyXPrice, productCategory);
 
   @JsonKey(ignore: true)
   @override
@@ -218,6 +239,7 @@ abstract class _CampaignDto implements CampaignDto {
       {required final int id,
       required final double discount,
       required final String title,
+      final bool isPercentageType,
       final double? everyXPrice,
       final String? productCategory}) = _$CampaignDtoImpl;
 
@@ -230,6 +252,8 @@ abstract class _CampaignDto implements CampaignDto {
   double get discount;
   @override
   String get title;
+  @override // NOTE: it will not be used in Server.
+  bool get isPercentageType;
   @override // NOTE: it will not be used in Server.
   double? get everyXPrice;
   @override

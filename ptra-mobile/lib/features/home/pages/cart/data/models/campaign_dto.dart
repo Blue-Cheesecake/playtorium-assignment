@@ -9,6 +9,7 @@ class CampaignDto with _$CampaignDto {
     required final int id,
     required final double discount,
     required final String title, // NOTE: it will not be used in Server.
+    @Default(false) final bool isPercentageType, // NOTE: it will not be used in Server.
     double? everyXPrice,
     String? productCategory,
   }) = _CampaignDto;

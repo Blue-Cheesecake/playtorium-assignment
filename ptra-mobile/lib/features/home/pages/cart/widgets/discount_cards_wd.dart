@@ -16,23 +16,28 @@ class DiscountCardsWD extends ConsumerWidget {
     }
 
     return ListView.builder(
-        physics: const NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        itemCount: campaignDto.length,
-        itemBuilder: (context, index) {
-          final e = campaignDto[index];
-          return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
-            child: CommonDiscountCardWD(
-              id: e.id,
-              dtoIndex: index,
-              title: e.title,
-              discount: e.discount,
-              onRemoved: (index) {
-                ref.read(cartInputStateProvider.notifier).removeCampaignAt(index);
-              },
-            ),
-          );
-        });
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      itemCount: campaignDto.length,
+      padding: const EdgeInsets.symmetric(horizontal: 40),
+      itemBuilder: (context, index) {
+        final e = campaignDto[index];
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 15),
+          child: CommonDiscountCardWD(
+            id: e.id,
+            dtoIndex: index,
+            title: e.title,
+            discount: e.discount,
+            isPercentage: e.isPercentageType,
+            onRemoved: (index) {
+              ref.read(cartInputStateProvider.notifier).removeCampaignAt(index);
+            },
+            everyXPrice: e.everyXPrice,
+            productCategory: e.productCategory,
+          ),
+        );
+      },
+    );
   }
 }

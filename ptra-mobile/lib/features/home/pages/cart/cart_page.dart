@@ -1,35 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'data/data.dart';
 import 'logic/logic.dart';
 import 'widgets/widgets.dart';
 
-class CartPage extends ConsumerStatefulWidget {
+class CartPage extends ConsumerWidget {
   const CartPage({super.key});
 
   @override
-  ConsumerState<CartPage> createState() => _CartPageState();
-}
-
-class _CartPageState extends ConsumerState<CartPage> {
-  @override
-  void initState() {
-    super.initState();
-
-    SchedulerBinding.instance.addPostFrameCallback((_) {
-      ref.read(calculationAPIStateProvider.notifier).calculate(
-            products: ref.read(cartInputStateProvider.select((value) => value.products)),
-            campaigns: ref.read(
-              cartInputStateProvider.select((value) => value.campaigns),
-            ),
-          );
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final productsMap = ref.watch(cartInputStateProvider.select((value) => value.products));
     final products = <CartInputInfoModel>[];
     productsMap.forEach((_, v) {
@@ -72,6 +52,7 @@ class _CartPageState extends ConsumerState<CartPage> {
                   ),
                   const SizedBox(height: 15),
                   const DiscountCardsWD(),
+                  const SizedBox(height: 100),
                 ],
               ),
             ),

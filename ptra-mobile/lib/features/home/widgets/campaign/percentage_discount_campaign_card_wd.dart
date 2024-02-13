@@ -6,31 +6,31 @@ import '../../pages/cart/data/data.dart';
 import '../../pages/cart/logic/logic.dart';
 import '../../utils/utils.dart';
 
-class FixedAmountCampaignCardWD extends StatelessWidget {
-  const FixedAmountCampaignCardWD({super.key});
+class PercentageDiscountCampaignCardWD extends StatelessWidget {
+  const PercentageDiscountCampaignCardWD({super.key});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        showDialog(context: context, builder: (context) => const _FixedamountDialog());
+        showDialog(context: context, builder: (context) => const _PercentageDiscountDialog());
       },
       child: const CommonCampaignCardWD(
-        id: 1,
-        title: 'Fixed Amount Discount',
+        id: 2,
+        title: 'Percentage Discount',
       ),
     );
   }
 }
 
-class _FixedamountDialog extends ConsumerStatefulWidget {
-  const _FixedamountDialog();
+class _PercentageDiscountDialog extends ConsumerStatefulWidget {
+  const _PercentageDiscountDialog();
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => __FixedamountDialogState();
+  ConsumerState<ConsumerStatefulWidget> createState() => __PercentageDiscountDialogState();
 }
 
-class __FixedamountDialogState extends ConsumerState<_FixedamountDialog> {
+class __PercentageDiscountDialogState extends ConsumerState<_PercentageDiscountDialog> {
   final _controller = TextEditingController();
 
   @override
@@ -41,21 +41,23 @@ class __FixedamountDialogState extends ConsumerState<_FixedamountDialog> {
 
   @override
   Widget build(BuildContext context) {
-    final inputState = ref.watch(fixedAmountCampaignInputStateProvider);
+    final inputState = ref.watch(percentageDiscountCampaignInputStateProvider);
 
     return AlertDialog(
-      title: const Text('Enter Discount'),
+      title: const Text('Enter Percentage Discount'),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           BaseTextFieldWD(
-            suffix: const Text('฿'),
+            suffix: const Text('%'),
             controller: _controller,
-            hintText: '0.00',
-            onChanged: (value) =>
-                ref.read(fixedAmountCampaignInputStateProvider.notifier).updateDiscount(double.tryParse(value ?? '0')),
-            onSubmitted: (value) =>
-                ref.read(fixedAmountCampaignInputStateProvider.notifier).updateDiscount(double.tryParse(value ?? '0')),
+            hintText: '0.0',
+            onChanged: (value) => ref
+                .read(percentageDiscountCampaignInputStateProvider.notifier)
+                .updateDiscount(double.tryParse(value ?? '0')),
+            onSubmitted: (value) => ref
+                .read(percentageDiscountCampaignInputStateProvider.notifier)
+                .updateDiscount(double.tryParse(value ?? '0')),
             keyboardType: TextInputType.number,
           ),
           if (inputState.errorText != null) const SizedBox(height: 20),
@@ -72,11 +74,12 @@ class __FixedamountDialogState extends ConsumerState<_FixedamountDialog> {
                 ? () {
                     ref.read(cartInputStateProvider.notifier).addCampaign(
                           CampaignDto(
-                            id: 1,
-                            title: 'Fixed Amount',
+                            id: 2,
+                            title: 'Percentage Discount',
                             discount: ref.read(
-                              fixedAmountCampaignInputStateProvider.select((value) => value.discount!),
+                              percentageDiscountCampaignInputStateProvider.select((value) => value.discount!),
                             ),
+                            isPercentageType: true,
                           ),
                         );
                     Navigator.of(context).pop();

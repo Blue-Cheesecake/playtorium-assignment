@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../utils.dart';
+
 class CommonDiscountCardWD extends StatelessWidget {
   const CommonDiscountCardWD({
     required this.id,
@@ -7,15 +9,19 @@ class CommonDiscountCardWD extends StatelessWidget {
     required this.title,
     required this.discount,
     required this.onRemoved,
+    this.isPercentage = false,
+    this.productCategory,
     super.key,
-    this.child,
+    this.everyXPrice,
   });
 
   final int id;
   final int dtoIndex;
   final String title;
   final double discount;
-  final Widget? child;
+  final bool isPercentage;
+  final String? productCategory;
+  final double? everyXPrice;
   final void Function(int index) onRemoved;
 
   @override
@@ -28,6 +34,13 @@ class CommonDiscountCardWD extends StatelessWidget {
       colorIndex = 1;
     } else {
       colorIndex = 2;
+    }
+
+    String discountText = 'Discount: $discount';
+    if (isPercentage) {
+      discountText += '%';
+    } else {
+      discountText += '฿';
     }
 
     return Container(
@@ -44,16 +57,35 @@ class CommonDiscountCardWD extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                title,
-                style: const TextStyle(fontWeight: FontWeight.bold),
+              SizedBox(
+                width: 180,
+                child: Row(
+                  children: [
+                    Flexible(
+                      child: Text(
+                        title,
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                        softWrap: true,
+                      ),
+                    ),
+                  ],
+                ),
               ),
               Text(
-                'Discount: $discount฿',
+                discountText,
                 style: const TextStyle(fontSize: 12),
+                overflow: TextOverflow.fade,
               ),
-              if (child != null) const SizedBox(height: 15),
-              if (child != null) child!,
+              if (productCategory != null)
+                Text(
+                  'Category: $productCategory',
+                  style: const TextStyle(fontSize: 12),
+                ),
+              if (everyXPrice != null)
+                Text(
+                  'For every: $everyXPrice baht',
+                  style: const TextStyle(fontSize: 12),
+                ),
             ],
           ),
           IconButton(
