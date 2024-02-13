@@ -1,0 +1,91 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "T Shirt",
+      "categoryId": 1,
+      "price":  350.0
+    },
+    {
+      "id": 2,
+      "name": "Hat",
+      "categoryId": 2,
+      "price":  250.0
+    },
+    {
+      "id": 3,
+      "name": "Hoodie",
+      "categoryId": 1,
+      "price":  700.0
+    },
+    {
+      "id": 4,
+      "name": "Watch",
+      "categoryId": 2,
+      "price":  850.0
+    },
+    {
+      "id": 5,
+      "name": "Bag",
+      "categoryId": 2,
+      "price":  640.0
+    },
+    {
+      "id": 6,
+      "name": "Belt",
+      "categoryId": 2,
+      "price":  230.0
+    }
+  ],
+  "product_categories": [
+    {
+      "id": 1,
+      "title": "clothing"
+    },
+    {
+      "id": 2,
+      "title": "accessories"
+    }
+  ],
+  "campaigns": [
+    {
+      "id": 1,
+      "title": "Fixed Amount",
+      "category": 1
+    },
+    {
+      "id": 2,
+      "title": "Percentage Discount",
+      "category": 1
+    },
+    {
+      "id": 3,
+      "title": "Percentage Discount by Item Category",
+      "category": 2
+    },
+    {
+      "id": 4,
+      "title": "Discount by Points",
+      "category": 2
+    },
+    {
+      "id": 5,
+      "title": "Special campaigns",
+      "category": 3
+    }
+  ],
+  "campaign_categories": [
+    {
+      "id": 1,
+      "title": "coupon"
+    },
+    {
+      "id": 2,
+      "title": "On Top"
+    },
+    {
+      "id": 3,
+      "title": "Seasonal"
+    }
+  ]
+}
