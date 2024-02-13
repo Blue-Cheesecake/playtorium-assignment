@@ -2,8 +2,8 @@
 
 ## Implementations
 
-1. PTRA Server - The NestJS server providing the API for getting final total price given list of products and campaigns.
-2. PTRA Mobile - The Mobile Application simulating the Shopping Cart for selecting the products with discount  and see the total price
+1. PTRA Server - The NestJS server provides the API for getting the final total price given a list of products and campaigns.
+2. PTRA Mobile - The Mobile Application built by Flutter simulating the Shopping Cart for selecting the products with discount  and see the total price
 
 ## PTRA Server
 
@@ -33,7 +33,7 @@ You should be able to see the list of product after using `curl`
 
 ### API Documents
 
-**NOTE** more Product Id and Campaign Id can be found at `database.service.ts`, on `MockDatabaseService` class
+**NOTE** more Product Id and Campaign Id information can be found at `database.service.ts`, on `MockDatabaseService` class
 
 #### Get Total Price
 
@@ -139,8 +139,8 @@ Case - 400 : Invalid Dto property
 
 #### Get All Products List
 
-Method: `POST`
-Endpoint: `/api/v1/sale-campaign`
+Method: `GET`
+Endpoint: `/api/v1/product`
 
 ##### **Header**
 
@@ -212,3 +212,84 @@ Case - 200 (Success)
     }
 ]
 ```
+
+## PTRA Mobile
+
+The frontend part of this system written by **Flutter** with **Clean Architecture** pattern.
+
+### Features
+
+**Homepage**
+- View all products list
+- Add product to cart
+- Select Campaign to apply on cart. 
+  - Each Campaign has their own unique parameters as stated in requirements
+
+**Cart**
+- View products that are added to cart
+- Add or remove product's quantity
+- View campaings that are going to be applied on this cart
+- Remove campaings on cart
+
+**Checkout**
+- See summary (total price) of current cart
+
+**NOTE**: Most of the features are intereacting with server. Hence, docker should be run first before running Mobile Application.
+
+#### Current Available Platform
+
+|Platform|Availability|
+|--------|------------|
+|iOS|✅|
+|Android|✅|
+|Web||
+|MacOS||
+|Windows||
+|Linux||
+
+#### Getting Started
+
+1. Use Flutter version `3.16.0` to run. (You may use Flutter Version Management or [FVM](https://fvm.app/) to apply this specific version)
+2. Run the application (vscode)
+   1. iOS - Run on DEV configuration
+
+![vscode_ios](documents/vscode_ios.png)
+
+   2. Android 
+      1. Change the apiURL to be ` "--dart-define=apiURL=http://10.0.2.2:9000",` since `localhost` does not work in Android
+      2. Run on Dev Configuration
+
+![vscode_android](documents/vscode_android.png)
+
+#### User Interface Demo
+
+<img src="documents/m_homepage_1.png" height=530>
+
+<img src="documents/m_homepage_2.png" height=530>
+
+- Homepage (View All Products List)
+- When scrolling down, there will be discount (campaign) options available
+
+<img src="documents/m_enter_discount_info.png" height=530>
+
+- Entering the discount amount on Campaigns
+
+<img src="documents/m_cart_empty.png" height=530>
+
+- Cart page with empty products and discounts
+
+<img src="documents/m_cart_added_products.png" height=530>
+
+<img src="documents/m_cart_added_single_discount.png" height=530>
+
+<img src="documents/m_cart_added_multiple_discount.png" height=530>
+
+- Cart page with products and discounts
+
+<img src="documents/m_calculation_result.png" height=530>
+
+- Click `Checkout` button to see the total price of this cart
+
+<img src="documents/m_error_case.png" height=530>
+
+- If the campaings are invalid (duplicated campaign on similar type or other errors), the summary will show the error.
