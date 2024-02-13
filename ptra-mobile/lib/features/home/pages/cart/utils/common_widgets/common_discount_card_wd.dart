@@ -27,7 +27,6 @@ class CommonDiscountCardWD extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = [Colors.blue, Colors.amber, Colors.red];
-    print('id: $id');
     int colorIndex = 0;
     if (id <= 2) {
       colorIndex = 0;
@@ -36,9 +35,8 @@ class CommonDiscountCardWD extends StatelessWidget {
     } else {
       colorIndex = 2;
     }
-    print('color index: $colorIndex');
 
-    String discountText = 'Discount: $discount${discountType.symbol}';
+    String discountText = 'Discount: $discount ${discountType.symbol}';
 
     return Container(
       decoration: BoxDecoration(
@@ -80,7 +78,7 @@ class CommonDiscountCardWD extends StatelessWidget {
                 ),
               if (everyXPrice != null)
                 Text(
-                  'For every: $everyXPrice baht',
+                  'For every: $everyXPrice ฿',
                   style: const TextStyle(fontSize: 12),
                 ),
             ],
