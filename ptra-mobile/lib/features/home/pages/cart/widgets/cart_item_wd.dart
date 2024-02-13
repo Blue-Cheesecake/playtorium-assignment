@@ -40,7 +40,12 @@ class CartItemWD extends ConsumerWidget {
                 children: [
                   IconButton(
                     onPressed: () {
+                      final state = ref.read(cartInputStateProvider);
                       ref.read(cartInputStateProvider.notifier).removeProduct(info.data);
+                      ref.read(calculationAPIStateProvider.notifier).calculate(
+                            products: state.products,
+                            campaigns: state.campaigns,
+                          );
                     },
                     icon: const Icon(Icons.remove),
                   ),
@@ -50,7 +55,12 @@ class CartItemWD extends ConsumerWidget {
                   ),
                   IconButton(
                     onPressed: () {
+                      final state = ref.read(cartInputStateProvider);
                       ref.read(cartInputStateProvider.notifier).addProduct(info.data);
+                      ref.read(calculationAPIStateProvider.notifier).calculate(
+                            products: state.products,
+                            campaigns: state.campaigns,
+                          );
                     },
                     icon: const Icon(Icons.add),
                   ),

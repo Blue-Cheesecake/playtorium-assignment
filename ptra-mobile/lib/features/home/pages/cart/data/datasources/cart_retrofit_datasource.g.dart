@@ -48,15 +48,12 @@ class _CartRetrofit implements CartRetrofit {
   }
 
   @override
-  Future<TotalPriceResult> getTotalPrice({
-    required List<ProductDto> products,
-    List<CampaignDto>? campaigns,
-  }) async {
+  Future<TotalPriceResult> getTotalPrice(
+      {required GetTotalPriceParams params}) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
-    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
-    final _data = products.map((e) => e.toJson()).toList();
+    final _data = params;
     final _result = await _dio
         .fetch<Map<String, dynamic>>(_setStreamType<TotalPriceResult>(Options(
       method: 'POST',
