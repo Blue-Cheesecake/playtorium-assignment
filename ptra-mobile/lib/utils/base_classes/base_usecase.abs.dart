@@ -10,6 +10,7 @@ abstract class BaseUseCase<P, R> {
 
   Future<BaseResult<R>> execute(P params) async {
     try {
+      await Future.delayed(const Duration(seconds: 1, milliseconds: 250));
       final response = await call(params);
       return Success(response);
     } catch (e) {
