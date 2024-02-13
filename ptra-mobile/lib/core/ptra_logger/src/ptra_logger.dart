@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 final class PTRALogger {
   PTRALogger._();
 
-  static const _enableDebug = false;
+  static const _enableDebug = true;
 
   static void _log({
     required _LogLevel level,

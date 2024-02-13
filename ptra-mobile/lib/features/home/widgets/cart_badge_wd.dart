@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/core.dart';
 import '../pages/cart/logic/input/input.dart';
 
 class CartBadgeWD extends ConsumerWidget {
@@ -14,19 +15,24 @@ class CartBadgeWD extends ConsumerWidget {
     products.forEach((key, value) {
       itemCount += value.quantity;
     });
-    return badges.Badge(
-      badgeStyle: const badges.BadgeStyle(
-        badgeColor: Colors.blue,
-      ),
-      badgeContent: Text(
-        itemCount.toString(),
-        style: const TextStyle(
-          fontSize: 12,
-          color: Colors.white,
+    return GestureDetector(
+      onTap: () {
+        PTRANavigation.instance.push(RoutePaths.cartPage);
+      },
+      child: badges.Badge(
+        badgeStyle: const badges.BadgeStyle(
+          badgeColor: Colors.blue,
         ),
-      ),
-      child: const Icon(
-        Icons.shopping_cart,
+        badgeContent: Text(
+          itemCount.toString(),
+          style: const TextStyle(
+            fontSize: 12,
+            color: Colors.white,
+          ),
+        ),
+        child: const Icon(
+          Icons.shopping_cart,
+        ),
       ),
     );
   }

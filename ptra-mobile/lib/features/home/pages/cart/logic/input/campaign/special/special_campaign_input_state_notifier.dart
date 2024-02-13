@@ -20,4 +20,9 @@ class SpecialCampaignInputStateNotifier extends StateNotifier<SpecialCampaignInp
     state = state.copyWith(discount: value);
     _validateDiscount();
   }
+
+  void updateEveryXPrice(double? value) {
+    state = state.copyWith(everyXPrice: value);
+    _validateDiscount();
+  }
 }

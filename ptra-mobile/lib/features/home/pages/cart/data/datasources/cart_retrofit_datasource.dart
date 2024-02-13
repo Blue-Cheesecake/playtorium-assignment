@@ -20,10 +20,7 @@ abstract class CartRetrofit {
   Future<List<CampaignModel>> getCampaigns();
 
   @POST(CartBaseURL.saleCampaign)
-  Future<TotalPriceResult> getTotalPrice({
-    @Body() required List<ProductDto> products,
-    @Body() List<CampaignDto>? campaigns,
-  });
+  Future<TotalPriceResult> getTotalPrice({@Body() required GetTotalPriceParams params});
 }
 
 class CartRetrofitDataSource implements ICartDataSource {
@@ -41,7 +38,7 @@ class CartRetrofitDataSource implements ICartDataSource {
   @override
   Future<ITotalPriceResult> getTotalPrice({required List<ProductDto> products, List<CampaignDto>? campaigns}) {
     final retrofit = CartRetrofit(_dio);
-    final response = retrofit.getTotalPrice(products: products, campaigns: campaigns);
+    final response = retrofit.getTotalPrice(params: GetTotalPriceParams(products: products, campaigns: campaigns));
     return response;
   }
 }
