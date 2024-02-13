@@ -33,35 +33,51 @@ class _HomepageState extends ConsumerState<Homepage> {
           SizedBox(width: 20),
         ],
       ),
-      body: SafeArea(
-        child: ref.watch(homepageStateProvider).when(
-          loading: () {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          },
-          data: (data) {
-            return GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 20,
-                mainAxisSpacing: 20,
-                childAspectRatio: 2 / 2.75,
+      body: ref.watch(homepageStateProvider).when(
+        loading: () {
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        },
+        data: (data) {
+          return SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  GridView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      crossAxisSpacing: 20,
+                      mainAxisSpacing: 20,
+                      childAspectRatio: 2 / 2.75,
+                    ),
+                    shrinkWrap: true,
+                    itemCount: data.length,
+                    itemBuilder: (context, index) {
+                      return ProductWD(product: data[index]);
+                    },
+                  ),
+                  const SizedBox(height: 25),
+                  const Text(
+                    'Discount Options',
+                    style: TextStyle(fontSize: 22),
+                  ),
+                  const SizedBox(height: 15),
+                  const FixedAmountCampaignCardWD(),
+                  const SizedBox(height: 50),
+                ],
               ),
-              padding: const EdgeInsets.all(10),
-              shrinkWrap: true,
-              itemCount: data.length,
-              itemBuilder: (context, index) {
-                return ProductWD(product: data[index]);
-              },
-            );
-          },
-          error: () {
-            return const Center(
-              child: Text('An error is occured'),
-            );
-          },
-        ),
+            ),
+          );
+        },
+        error: () {
+          return const Center(
+            child: Text('An error is occured'),
+          );
+        },
       ),
     );
   }

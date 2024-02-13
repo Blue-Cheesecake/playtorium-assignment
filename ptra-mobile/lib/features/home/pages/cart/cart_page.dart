@@ -45,16 +45,35 @@ class _CartPageState extends ConsumerState<CartPage> {
         child: Stack(
           fit: StackFit.expand,
           children: [
-            ListView.builder(
-              shrinkWrap: true,
-              itemCount: productsMap.length,
-              padding: const EdgeInsets.all(10),
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.only(bottom: 15),
-                  child: CartItemWD(info: products[index]),
-                );
-              },
+            SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (products.isEmpty) const Center(child: Text('"Your cart is currently empty"')),
+                  ListView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    itemCount: productsMap.length,
+                    padding: const EdgeInsets.all(10),
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 15),
+                        child: CartItemWD(info: products[index]),
+                      );
+                    },
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 40),
+                    child: Text(
+                      'Current Discounts',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ),
+                  const SizedBox(height: 15),
+                  const DiscountCardsWD(),
+                ],
+              ),
             ),
             Align(
               alignment: Alignment.bottomCenter,
