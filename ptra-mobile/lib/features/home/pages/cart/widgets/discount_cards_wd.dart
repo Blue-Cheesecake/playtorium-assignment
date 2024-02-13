@@ -29,7 +29,7 @@ class DiscountCardsWD extends ConsumerWidget {
             dtoIndex: index,
             title: e.title,
             discount: e.discount,
-            isPercentage: e.isPercentageType,
+            discountType: e.discountType,
             onRemoved: (index) {
               ref.read(cartInputStateProvider.notifier).removeCampaignAt(index);
             },

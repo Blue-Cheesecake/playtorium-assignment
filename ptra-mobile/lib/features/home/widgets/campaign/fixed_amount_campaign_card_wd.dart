@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../utils/utils.dart';
 import '../../pages/cart/data/data.dart';
 import '../../pages/cart/logic/logic.dart';
+import '../../pages/cart/utils/utils.dart';
 import '../../utils/utils.dart';
 
 class FixedAmountCampaignCardWD extends StatelessWidget {
@@ -77,6 +78,7 @@ class __FixedamountDialogState extends ConsumerState<_FixedamountDialog> {
                             discount: ref.read(
                               fixedAmountCampaignInputStateProvider.select((value) => value.discount!),
                             ),
+                            discountType: CampaignDiscountType.baht,
                           ),
                         );
                     Navigator.of(context).pop();

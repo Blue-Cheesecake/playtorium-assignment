@@ -71,6 +71,8 @@ class _HomepageState extends ConsumerState<Homepage> {
                   const PercentageDiscountCampaignCardWD(),
                   const SizedBox(height: 15),
                   const PercentageDiscountByCatCardWD(),
+                  const SizedBox(height: 15),
+                  const DiscountByPointsCampaignCardWD(),
                   const SizedBox(height: 50),
                 ],
               ),

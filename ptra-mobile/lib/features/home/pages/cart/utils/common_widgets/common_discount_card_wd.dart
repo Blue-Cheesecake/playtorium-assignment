@@ -9,17 +9,17 @@ class CommonDiscountCardWD extends StatelessWidget {
     required this.title,
     required this.discount,
     required this.onRemoved,
-    this.isPercentage = false,
+    required this.discountType,
     this.productCategory,
-    super.key,
     this.everyXPrice,
+    super.key,
   });
 
   final int id;
   final int dtoIndex;
   final String title;
   final double discount;
-  final bool isPercentage;
+  final CampaignDiscountType discountType;
   final String? productCategory;
   final double? everyXPrice;
   final void Function(int index) onRemoved;
@@ -27,6 +27,7 @@ class CommonDiscountCardWD extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = [Colors.blue, Colors.amber, Colors.red];
+    print('id: $id');
     int colorIndex = 0;
     if (id <= 2) {
       colorIndex = 0;
@@ -35,13 +36,9 @@ class CommonDiscountCardWD extends StatelessWidget {
     } else {
       colorIndex = 2;
     }
+    print('color index: $colorIndex');
 
-    String discountText = 'Discount: $discount';
-    if (isPercentage) {
-      discountText += '%';
-    } else {
-      discountText += '฿';
-    }
+    String discountText = 'Discount: $discount${discountType.symbol}';
 
     return Container(
       decoration: BoxDecoration(

@@ -11,7 +11,8 @@ _$CampaignDtoImpl _$$CampaignDtoImplFromJson(Map<String, dynamic> json) =>
       id: json['id'] as int,
       discount: (json['discount'] as num).toDouble(),
       title: json['title'] as String,
-      isPercentageType: json['isPercentageType'] as bool? ?? false,
+      discountType:
+          $enumDecode(_$CampaignDiscountTypeEnumMap, json['discountType']),
       everyXPrice: (json['everyXPrice'] as num?)?.toDouble(),
       productCategory: json['productCategory'] as String?,
     );
@@ -21,7 +22,13 @@ Map<String, dynamic> _$$CampaignDtoImplToJson(_$CampaignDtoImpl instance) =>
       'id': instance.id,
       'discount': instance.discount,
       'title': instance.title,
-      'isPercentageType': instance.isPercentageType,
+      'discountType': _$CampaignDiscountTypeEnumMap[instance.discountType]!,
       'everyXPrice': instance.everyXPrice,
       'productCategory': instance.productCategory,
     };
+
+const _$CampaignDiscountTypeEnumMap = {
+  CampaignDiscountType.baht: 'baht',
+  CampaignDiscountType.percentage: 'percentage',
+  CampaignDiscountType.point: 'point',
+};

@@ -109,9 +109,11 @@ class __PercentageDiscountByCatCardDialogState extends ConsumerState<_Percentage
                             discount: ref.read(
                               percentageDiscountByCatCampaignInputStateProvider.select((value) => value.discount!),
                             ),
-                            isPercentageType: true,
-                            productCategory: ref.read(percentageDiscountByCatCampaignInputStateProvider
-                                .select((value) => value.productCategory!.label)),
+                            productCategory: ref.read(
+                              percentageDiscountByCatCampaignInputStateProvider
+                                  .select((value) => value.productCategory!.label),
+                            ),
+                            discountType: CampaignDiscountType.percentage,
                           ),
                         );
                     Navigator.of(context).pop();

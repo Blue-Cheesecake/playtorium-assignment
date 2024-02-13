@@ -7,31 +7,31 @@ import '../../pages/cart/logic/logic.dart';
 import '../../pages/cart/utils/utils.dart';
 import '../../utils/utils.dart';
 
-class PercentageDiscountCampaignCardWD extends StatelessWidget {
-  const PercentageDiscountCampaignCardWD({super.key});
+class DiscountByPointsCampaignCardWD extends StatelessWidget {
+  const DiscountByPointsCampaignCardWD({super.key});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        showDialog(context: context, builder: (context) => const _PercentageDiscountDialog());
+        showDialog(context: context, builder: (context) => const _DiscountByPointsDialog());
       },
       child: const CommonCampaignCardWD(
-        id: 2,
-        title: 'Percentage Discount',
+        id: 4,
+        title: 'Discount by Points',
       ),
     );
   }
 }
 
-class _PercentageDiscountDialog extends ConsumerStatefulWidget {
-  const _PercentageDiscountDialog();
+class _DiscountByPointsDialog extends ConsumerStatefulWidget {
+  const _DiscountByPointsDialog();
 
   @override
-  ConsumerState<ConsumerStatefulWidget> createState() => __PercentageDiscountDialogState();
+  ConsumerState<ConsumerStatefulWidget> createState() => __DiscountByPointsDialogState();
 }
 
-class __PercentageDiscountDialogState extends ConsumerState<_PercentageDiscountDialog> {
+class __DiscountByPointsDialogState extends ConsumerState<_DiscountByPointsDialog> {
   final _controller = TextEditingController();
 
   @override
@@ -42,22 +42,22 @@ class __PercentageDiscountDialogState extends ConsumerState<_PercentageDiscountD
 
   @override
   Widget build(BuildContext context) {
-    final inputState = ref.watch(percentageDiscountCampaignInputStateProvider);
+    final inputState = ref.watch(discountByPointsCampaignInputStateProvider);
 
     return AlertDialog(
-      title: const Text('Enter Percentage Discount'),
+      title: const Text('Enter Discount Points'),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           BaseTextFieldWD(
-            suffix: const Text('%'),
+            suffix: const Text('P'),
             controller: _controller,
-            hintText: '0.0',
+            hintText: '0.00',
             onChanged: (value) => ref
-                .read(percentageDiscountCampaignInputStateProvider.notifier)
+                .read(discountByPointsCampaignInputStateProvider.notifier)
                 .updateDiscount(double.tryParse(value ?? '0')),
             onSubmitted: (value) => ref
-                .read(percentageDiscountCampaignInputStateProvider.notifier)
+                .read(discountByPointsCampaignInputStateProvider.notifier)
                 .updateDiscount(double.tryParse(value ?? '0')),
             keyboardType: TextInputType.number,
           ),
@@ -75,12 +75,12 @@ class __PercentageDiscountDialogState extends ConsumerState<_PercentageDiscountD
                 ? () {
                     ref.read(cartInputStateProvider.notifier).addCampaign(
                           CampaignDto(
-                            id: 2,
-                            title: 'Percentage Discount',
+                            id: 4,
+                            title: 'Discount by Points',
                             discount: ref.read(
-                              percentageDiscountCampaignInputStateProvider.select((value) => value.discount!),
+                              discountByPointsCampaignInputStateProvider.select((value) => value.discount!),
                             ),
-                            discountType: CampaignDiscountType.percentage,
+                            discountType: CampaignDiscountType.point,
                           ),
                         );
                     Navigator.of(context).pop();
