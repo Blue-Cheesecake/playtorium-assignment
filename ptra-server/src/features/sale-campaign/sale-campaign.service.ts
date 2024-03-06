@@ -100,6 +100,11 @@ export class SaleCampaignService {
 
     products.forEach((e) => {
       const product = this.databaseService.getProductById(e.id);
+      if (!product) {
+        throw new BadRequestException({
+          message: SaleCampaignMessageConstant.productNotFound,
+        });
+      }
       const category = this.databaseService.getProductCategoryFromId(
         product.categoryId,
       );
@@ -114,9 +119,6 @@ export class SaleCampaignService {
         totalPrice += product.price * e.quantity;
         return;
       }
-      throw new BadRequestException({
-        message: SaleCampaignMessageConstant.productNotFound,
-      });
     });
 
     return {
