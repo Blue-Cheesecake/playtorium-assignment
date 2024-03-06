@@ -3,6 +3,7 @@ import { DiscountType } from '../enum/discount-type.enum';
 import { CampaignType } from '../enum/campaign-type.enum';
 import CampaignModel from '../models/campaign.model';
 import CampaignDto from '../../features/sale-campaign/utils/dto/campaign.dto';
+import { ProductCategory } from '../enum/product-category.enum';
 
 export default class ValidationFunction {
   static isCampaignDtoListValid(
@@ -72,6 +73,10 @@ export default class ValidationFunction {
     campaign: CampaignModel,
   ): boolean {
     if (!dto.discount) {
+      return false;
+    }
+
+    if (!Object.values(ProductCategory).includes(dto.productCategory)) {
       return false;
     }
 
