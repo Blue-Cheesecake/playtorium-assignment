@@ -100,21 +100,11 @@ Case - 200 (Success)
 
 |Name|Type|Required|
 |----|----|----|
-|totalPrice|double||
+|totalPrice|double|✅|
 
 ```json
 {
   "totalPrice": 1250
-}
-```
-
-Case - 200 (Missing Property)
-
-The result will be null
-
-```json
-{
-  "totalPrice": null
 }
 ```
 

@@ -3,6 +3,7 @@ import { DiscountType } from '../enum/discount-type.enum';
 import { CampaignType } from '../enum/campaign-type.enum';
 import CampaignModel from '../models/campaign.model';
 import CampaignDto from '../../features/sale-campaign/utils/dto/campaign.dto';
+import { ProductCategory } from '../enum/product-category.enum';
 
 export default class ValidationFunction {
   static isCampaignDtoListValid(
@@ -13,14 +14,17 @@ export default class ValidationFunction {
       return true;
     }
 
+    // Check Id of incoming
     let isValidCampaignId = true;
     const campaignModels = campaigns.map((e) => {
       const r = databaseService.getCampaignById(e.id);
+
       if (!r) {
         isValidCampaignId = false;
       }
       return r;
     });
+
     if (!isValidCampaignId) {
       return false;
     }
@@ -49,8 +53,7 @@ export default class ValidationFunction {
   ): boolean {
     const map = new Map<number, number>(); // categoryId : campaignId
 
-    for (let i = 0; i < campaigns.length; i++) {
-      const campaign = campaigns[i];
+    for (let campaign of campaigns) {
       if (!map.has(campaign.categoryId)) {
         map.set(campaign.categoryId, campaign.id);
         continue;
@@ -69,6 +72,10 @@ export default class ValidationFunction {
     dto: CampaignDto,
     campaign: CampaignModel,
   ): boolean {
+    if (!dto.discount) {
+      return false;
+    }
+
     // value checking
     switch (campaign.discountType) {
       case DiscountType.percentage:
@@ -110,6 +117,12 @@ export default class ValidationFunction {
     if (
       campaign.type === CampaignType.percentageDiscountByItemCategory &&
       !dto.productCategory
+    ) {
+      return false;
+    }
+    if (
+      campaign.type === CampaignType.percentageDiscountByItemCategory &&
+      !Object.values(ProductCategory).includes(dto.productCategory)
     ) {
       return false;
     }
