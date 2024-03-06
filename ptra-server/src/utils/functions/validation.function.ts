@@ -76,10 +76,6 @@ export default class ValidationFunction {
       return false;
     }
 
-    if (!Object.values(ProductCategory).includes(dto.productCategory)) {
-      return false;
-    }
-
     // value checking
     switch (campaign.discountType) {
       case DiscountType.percentage:
@@ -121,6 +117,12 @@ export default class ValidationFunction {
     if (
       campaign.type === CampaignType.percentageDiscountByItemCategory &&
       !dto.productCategory
+    ) {
+      return false;
+    }
+    if (
+      campaign.type === CampaignType.percentageDiscountByItemCategory &&
+      !Object.values(ProductCategory).includes(dto.productCategory)
     ) {
       return false;
     }
